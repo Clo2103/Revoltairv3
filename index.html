@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Revolt'air — L'aviation légère réinventée</title>
+<meta name="description" content="Revolt'air : 4 étudiants ingénieurs transforment un ULM thermique en 100% électrique. Premier vol fin 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
+<link rel="stylesheet" href="site.css" />
+
+<style>
+/* ---- Mobile nav fix ---- */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--c-green-dark);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 100;
+  }
+  .nav__links.is-open a {
+    color: var(--c-cream);
+    font-size: 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 101;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .nav__hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--c-green-dark);
+    display: block;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .is-scrolled .nav__hamburger span { background: var(--c-green-dark); }
+  .nav__hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__cta { display: none; }
+}
+@media (min-width: 769px) {
+  .nav__hamburger { display: none; }
+}
+/* Fix hero text visibility */
+.hero__title { color: #f4f1e8 !important; }
+.hero__tag { color: rgba(244,241,232,0.85) !important; }
+.hero__eyebrow { color: var(--c-green) !important; }
+.hero__eyebrow::before { background: var(--c-green) !important; }
+</style>
+</head>
+<body data-screen-label="01 Accueil">
+
+<!-- ============== NAV ============== -->
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand">
+      <img src="assets/logo.png" alt="Revolt'air" />
+      <span>Revolt<span class="nav__brand-em">'air</span></span>
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="#projet">Le projet</a></li>
+        <li><a href="equipe.html">L'équipe</a></li>
+        <li><a href="partenaires.html">Partenaires</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="soutenir.html">Soutenir</a></li>
+      </ul>
+    </nav>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" onclick="
+      const nav = document.querySelector('.nav__links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open');
+    ">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__cta">
+      <a href="soutenir.html" class="btn btn--primary">
+        Nous soutenir
+        <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9 H 15 M10 4 L 15 9 L 10 14"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero__media">
+    <!-- Image de fond ULM -->
+    <img
+      src="assets/moodboard.png"
+      alt="ULM Revolt'air"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"
+      onerror="this.style.display='none'"
+    />
+    <!-- Overlay sombre -->
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(5,20,12,0.75) 0%,rgba(8,54,36,0.65) 100%);z-index:1;"></div>
+    <!-- Bouton lecture vidéo YouTube -->
+    <a href="https://youtu.be/LAt4kAwPY90" target="_blank" rel="noopener"
+       style="position:absolute;bottom:32px;right:32px;z-index:3;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:10px 20px;color:#f4f1e8;font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:0.06em;text-decoration:none;transition:background 0.2s;">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M6 3.5l9 5.5-9 5.5V3.5z"/></svg>
+      Voir la vidéo
+    </a>
+  </div>
+  <div class="container hero__inner">
+    <div class="eyebrow hero__eyebrow">Premier vol — fin 2026</div>
+    <h1 class="hero__title">L'avion d'hier<br/>avec le moteur<br/><em>de demain.</em></h1>
+    <p class="hero__tag">L'aviation légère réinventée, propre et accessible. Quatre étudiants ingénieurs transforment un ULM thermique en 100% électrique.</p>
+    <div class="hero__ctas">
+      <a href="soutenir.html" class="btn btn--accent">
+        Devenir partenaire
+        <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9 H 15 M10 4 L 15 9 L 10 14"/></svg>
+      </a>
+      <a href="#projet" class="btn btn--ghost" style="color:var(--c-cream); border-color:rgba(244,241,232,0.5);">
+        Découvrir le projet
+      </a>
+    </div>
+  </div>
+  <div class="hero__meta">
+    <div class="hero__meta-item">
+      École
+      <strong>IPSA</strong>
+    </div>
+    <div class="hero__meta-item">
+      Équipe
+      <strong>4 ingénieurs</strong>
+    </div>
+    <div class="hero__meta-item">
+      Audience
+      <strong>3,5M+ vues</strong>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MANIFESTE ============== -->
+<section class="section section--cream" id="manifeste" data-screen-label="02 Manifeste">
+  <div class="container">
+    <div class="manifeste-row reveal">
+      <p class="manifeste">
+        Et si l'aviation<br/>de demain<br/>se construisait<br/><em>aujourd'hui</em>&nbsp;?
+      </p>
+      <div>
+        <p class="lede">L'aéronautique vit l'un des plus grands défis de son histoire&nbsp;: se réinventer pour rester possible. Cette transformation ne se fera pas sans audace, sans ingénieurs engagés, et sans partenaires qui croient à l'avenir.</p>
+        <p class="lede" style="margin-top: 18px;">Revolt'air est notre réponse, à notre échelle. Un projet étudiant qui ne se contente pas d'imaginer&nbsp;: il construit.</p>
+        <div class="manifeste-meta" style="margin-top: 28px;">
+          <strong>L'équipe Revolt'air</strong>
+          Chloé · Alix · Hugo · Amaël
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROJET ============== -->
+<section class="section section--cream-soft" id="projet" data-screen-label="03 Projet">
+  <div class="container">
+    <div class="section__head section__head--split reveal">
+      <div>
+        <div class="eyebrow">Le projet</div>
+        <h2 class="h-section" style="margin-top:14px;">Transformer un ULM<br/>thermique en 100%<br/>électrique.</h2>
+      </div>
+      <p class="lede">Plutôt que de concevoir un appareil neuf, nous revalorisons un ULM existant en y intégrant une motorisation électrique. Une démarche cohérente, sobre et reproductible.</p>
+    </div>
+
+    <div class="bref-grid">
+      <article class="bref-card reveal">
+        <div class="bref-card__num">01 — Intégration</div>
+        <h3 class="bref-card__title">Une motorisation électrique embarquée</h3>
+        <p class="bref-card__body">Moteur F020 30 kW, batteries lithium-ion 10 kWh, gestion thermique active et BMS embarqué pour la sécurité.</p>
+      </article>
+      <article class="bref-card reveal">
+        <div class="bref-card__num">02 — Validation</div>
+        <h3 class="bref-card__title">Des essais sol puis vol</h3>
+        <p class="bref-card__body">Validation réglementaire avec France ULM, recertification complète et premier décollage prévu fin 2026.</p>
+      </article>
+      <article class="bref-card reveal">
+        <div class="bref-card__num">03 — Diffusion</div>
+        <h3 class="bref-card__title">Sensibiliser à une aviation durable</h3>
+        <p class="bref-card__body">Documentaire, présence en salons aéronautiques, ouverture aux écoles et au grand public pour partager le récit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALERIE ============== -->
+<section class="section section--cream-soft" id="galerie" data-screen-label="03b Galerie">
+  <div class="container">
+    <div class="section__head section__head--split reveal">
+      <div>
+        <div class="eyebrow">En images</div>
+        <h2 class="h-section" style="margin-top:14px;">L'aventure,<br/>en direct.</h2>
+      </div>
+      <p class="lede">Atelier, vols d'essai, motorisation, cockpit&nbsp;: chaque étape est documentée. Nos partenaires reçoivent un suivi régulier en photos et vidéos.</p>
+    </div>
+    <div class="reveal" style="border-radius: var(--r-lg); overflow: hidden; background: var(--c-cream);">
+      <img src="assets/moodboard.png" alt="Galerie Revolt'air — ULM, cockpit, moteur, atelier" style="width: 100%; display: block;" />
+    </div>
+  </div>
+</section>
+
+<!-- ============== ÉQUIPE PREVIEW ============== -->
+<section class="section section--cream" id="equipe" data-screen-label="04 Équipe">
+  <div class="container">
+    <div class="section__head section__head--split reveal">
+      <div>
+        <div class="eyebrow">Quatre étudiants</div>
+        <h2 class="h-section" style="margin-top:14px;">Une même passion,<br/>quatre expertises.</h2>
+      </div>
+      <p class="lede">Nous sommes quatre étudiants ingénieurs de l'IPSA, spécialisés en mécanique, structures, propulsion et communication aéronautique.</p>
+    </div>
+
+        <div class="team-preview reveal">
+      <article class="team-preview__card">
+        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">C</div>
+        <h3 class="team-preview__name">Chloé</h3>
+        <div class="team-preview__role">Structures / Mécanique aéronautiques</div>
+      </article>
+      <article class="team-preview__card">
+        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">A</div>
+        <h3 class="team-preview__name">Alix</h3>
+        <div class="team-preview__role">Structures / Mécanique aéronautiques</div>
+      </article>
+      <article class="team-preview__card">
+        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">H</div>
+        <h3 class="team-preview__name">Hugo</h3>
+        <div class="team-preview__role">Propulsion &amp; énergie</div>
+      </article>
+      <article class="team-preview__card">
+        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">Am</div>
+        <h3 class="team-preview__name">Amaël</h3>
+        <div class="team-preview__role">Communication aéro</div>
+      </article>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center;">
+      <a href="equipe.html" class="btn btn--ghost">
+        Découvrir l'équipe
+        <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9 H 15 M10 4 L 15 9 L 10 14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TIMELINE ============== -->
+<section class="section section--dark" id="timeline" data-screen-label="05 Timeline">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="eyebrow">Calendrier projet</div>
+      <h2 class="h-section" style="margin-top:14px; max-width: 14ch;">De la table à dessin<br/>au premier décollage.</h2>
+    </div>
+
+    <div class="timeline-web reveal">
+      <div class="timeline-web__phase">
+        <div class="timeline-web__when">T4 2025</div>
+        <div class="timeline-web__body">
+          <h3 class="timeline-web__title">Lancement</h3>
+          <ul class="timeline-web__list">
+            <li>Choix de la propulsion</li>
+            <li>Rapatriement de l'ULM</li>
+            <li>Rénovation &amp; maintenance</li>
+          </ul>
+        </div>
+        <div class="timeline-web__status timeline-web__status--done">✓ En cours</div>
+      </div>
+      <div class="timeline-web__phase">
+        <div class="timeline-web__when">T1 — T2 2026</div>
+        <div class="timeline-web__body">
+          <h3 class="timeline-web__title">Intégration</h3>
+          <ul class="timeline-web__list">
+            <li>Achat moteur &amp; batteries</li>
+            <li>Adaptation de la structure</li>
+            <li>Premiers essais au sol</li>
+          </ul>
+        </div>
+        <div class="timeline-web__status timeline-web__status--active">● Actif</div>
+      </div>
+      <div class="timeline-web__phase">
+        <div class="timeline-web__when">T3 — T4 2026</div>
+        <div class="timeline-web__body">
+          <h3 class="timeline-web__title">Vol</h3>
+          <ul class="timeline-web__list">
+            <li>Recertification</li>
+            <li>Essais en vol</li>
+            <li><strong style="color: var(--c-green)">Premier vol — fin 2026</strong></li>
+          </ul>
+        </div>
+        <div class="timeline-web__status">À venir</div>
+      </div>
+    </div>
+
+    <div class="statband reveal" style="margin-top: 64px;">
+      <div class="statband__item">
+        <div class="statband__num">3,5M<sup>+</sup></div>
+        <div class="statband__label">Vues cumulées<br/>sur les réseaux</div>
+      </div>
+      <div class="statband__item">
+        <div class="statband__num">31,7k€</div>
+        <div class="statband__label">Budget total<br/>du projet</div>
+      </div>
+      <div class="statband__item">
+        <div class="statband__num">30 kW</div>
+        <div class="statball__label" style="color: rgba(244,241,232,0.7); font-size: 13px; margin-top: 8px; letter-spacing: 0.06em;">Moteur électrique<br/>F020</div>
+      </div>
+      <div class="statband__item">
+        <div class="statband__num">100%</div>
+        <div class="statband__label">Émissions directes<br/>de CO₂ supprimées</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PARTENAIRES ============== -->
+<section class="section section--cream-soft" id="partenaires" data-screen-label="06 Partenaires">
+  <div class="container">
+    <div class="section__head section__head--split reveal">
+      <div>
+        <div class="eyebrow">Ils nous soutiennent</div>
+        <h2 class="h-section" style="margin-top:14px;">Ils croient déjà<br/>en Revolt'air.</h2>
+      </div>
+      <p class="lede">Soutiens académiques, fédération nationale, réseau étudiants entrepreneurs. Et bientôt — votre nom ici&nbsp;?</p>
+    </div>
+
+    <div class="partners reveal">
+      <div class="partners__item">
+        <span class="partners__item-tag">École</span>
+        <span class="partners__item-name">IPSA</span>
+      </div>
+      <div class="partners__item">
+        <span class="partners__item-tag">Fédération</span>
+        <span class="partners__item-name">France ULM</span>
+      </div>
+      <div class="partners__item">
+        <span class="partners__item-tag">Réseau</span>
+        <span class="partners__item-name">Pépite IDF</span>
+      </div>
+      <div class="partners__item">
+        <span class="partners__item-tag" style="color: var(--c-green);">Disponible</span>
+        <span class="partners__item-name italic" style="color: rgba(8,54,36,0.4);">Votre logo</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center;">
+      <a href="partenaires.html" class="btn btn--ghost">
+        Voir tous nos partenaires
+        <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9 H 15 M10 4 L 15 9 L 10 14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SOUTENIR ============== -->
+<section class="section section--cream" id="soutenir" data-screen-label="07 Soutenir">
+  <div class="container">
+    <div class="section__head section__head--split reveal">
+      <div>
+        <div class="eyebrow">Soutenir le projet</div>
+        <h2 class="h-section" style="margin-top:14px;">Faisons décoller<br/>l'aviation de demain.</h2>
+      </div>
+      <p class="lede">Trois paliers de partenariat, ou un don libre&nbsp;: chaque contribution rapproche Revolt'air de son premier vol.</p>
+    </div>
+
+    <div class="counter reveal">
+      <div class="counter__progress">
+        <div class="eyebrow" style="margin-bottom: 14px;">Avancement budget</div>
+        <div class="counter__amount">
+          <span data-counter-current>1&nbsp;600&nbsp;€</span>
+          <span class="counter__amount-of">/&nbsp;31&nbsp;700&nbsp;€</span>
+        </div>
+        <div class="counter__label">collectés à ce jour — premier vol fin 2026</div>
+        <div class="counter__bar"><div class="counter__bar-fill" data-counter-fill style="width: 0%"></div></div>
+        <div class="counter__metrics">
+          <div class="counter__metric">
+            <strong>5%</strong>
+            de l'objectif
+          </div>
+          <div class="counter__metric">
+            <strong>42</strong>
+            donateurs
+          </div>
+          <div class="counter__metric">
+            <strong>14&nbsp;mois</strong>
+            avant le 1ᵉʳ vol
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-list">
+        <div class="tier-row">
+          <div class="tier-row__rank">Bronze</div>
+          <div class="tier-row__name">Visibilité essentielle</div>
+          <div class="tier-row__amount">1&nbsp;000&nbsp;€</div>
+        </div>
+        <div class="tier-row">
+          <div class="tier-row__rank">Argent</div>
+          <div class="tier-row__name">Visibilité étendue</div>
+          <div class="tier-row__amount">2&nbsp;500&nbsp;€</div>
+        </div>
+        <div class="tier-row tier-row--gold">
+          <div class="tier-row__rank">Or</div>
+          <div class="tier-row__name">Partenaire principal</div>
+          <div class="tier-row__amount">5&nbsp;000&nbsp;€</div>
+        </div>
+        <a href="soutenir.html" class="btn btn--primary" style="justify-content: center; margin-top: 8px;">
+          Voir tous les détails
+          <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9 H 15 M10 4 L 15 9 L 10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== NEWSLETTER ============== -->
+<section class="newsletter" data-screen-label="08 Newsletter">
+  <div class="container newsletter__inner reveal">
+    <h2 class="newsletter__title">Suivez<br/>l'aventure.</h2>
+    <form class="newsletter__form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Merci ✓';">
+      <input type="email" placeholder="votre@email.fr" required />
+      <button type="submit" class="btn btn--accent">
+        S'inscrire
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer" data-screen-label="09 Footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">Revolt<span class="footer__brand-em">'air</span></div>
+        <p class="footer__about">L'avion d'hier avec le moteur de demain. Un projet étudiant porté par 4 ingénieurs de l'IPSA pour faire voler une aviation légère propre et accessible.</p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Le projet</div>
+        <ul>
+          <li><a href="#projet">Présentation</a></li>
+          <li><a href="equipe.html">L'équipe</a></li>
+          <li><a href="journal.html">Journal de bord</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Soutenir</div>
+        <ul>
+          <li><a href="soutenir.html">Devenir partenaire</a></li>
+          <li><a href="soutenir.html">Faire un don</a></li>
+          <li><a href="partenaires.html">Nos partenaires</a></li>
+          <li><a href="assets/dossier.pdf">Télécharger le dossier</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Contact</div>
+        <ul>
+          <li><a href="mailto:revoltair@outlook.fr">revoltair@outlook.fr</a></li>
+          <li><a href="tel:+33619862336">06 19 86 23 36</a></li>
+          <li><a href="https://instagram.com/revolt_air" target="_blank" rel="noopener">@revolt_air</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Revolt'air. Tous droits réservés.</div>
+      <div>Site conçu avec passion par l'équipe.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- React + Babel for tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Counter bar reveal
+  const counterIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = '5%';
+        counterIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-counter-fill]').forEach(el => counterIo.observe(el));
+</script>
+
+</body>
+</html>

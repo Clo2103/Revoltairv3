@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>L'équipe — Revolt'air</title>
+<link rel="stylesheet" href="site.css" />
+<style>
+  .page-hero { padding: 180px 0 80px; background: var(--c-cream); }
+  .team-full { display: grid; grid-template-columns: 1fr; gap: 80px; }
+  .team-member { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 880px) { .team-member { grid-template-columns: 1fr 1.4fr; gap: 64px; } .team-member:nth-child(even) .team-member__photo { order: 2; } }
+  .team-member__photo { aspect-ratio: 4/5; background: linear-gradient(135deg, #d8e6cf, #c8dabb); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; color: rgba(8,54,36,0.45); letter-spacing: 0.1em; }
+  .team-member__role { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-green-mid); margin-bottom: 12px; }
+  .team-member__name { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1; color: var(--c-green-dark); margin: 0 0 20px; letter-spacing: -0.02em; }
+  .team-member__bio { font-size: 16px; line-height: 1.6; color: var(--c-ink); margin-bottom: 20px; }
+  .team-member__skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .team-member__skill { padding: 6px 14px; background: var(--c-cream-soft); border: 1px solid rgba(8,54,36,0.15); border-radius: 999px; font-size: 12px; letter-spacing: 0.04em; }
+  body.v-immersif .team-member__photo { background: linear-gradient(135deg, #0a261a, #14422f); color: rgba(244,241,232,0.4); }
+  body.v-immersif .team-member__skill { background: #081512; border-color: rgba(74,190,81,0.2); color: var(--c-cream); }
+</style>
+
+<style>
+/* ---- Mobile nav fix ---- */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--c-green-dark);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 100;
+  }
+  .nav__links.is-open a {
+    color: var(--c-cream);
+    font-size: 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 101;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .nav__hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--c-green-dark);
+    display: block;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .nav__hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__cta { display: none; }
+}
+@media (min-width: 769px) {
+  .nav__hamburger { display: none; }
+}
+</style>
+</head>
+<body data-screen-label="Équipe">
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="Revolt'air" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="partenaires.html">Partenaires</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="soutenir.html">Soutenir</a></li>
+    </ul></nav>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" onclick="
+      const nav = document.querySelector('.nav__links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open');
+    ">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__cta"><a href="soutenir.html" class="btn btn--primary">Nous soutenir</a></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Quatre étudiants — IPSA</div>
+    <h1 class="h-display" style="margin-top: 18px;">L'équipe<br/>Revolt'air.</h1>
+    <p class="lede" style="margin-top: 28px; max-width: 60ch;">Quatre étudiants ingénieurs spécialisés en mécanique, structures, propulsion et communication aéronautique. Une même passion : démontrer qu'une autre aviation est possible.</p>
+  </div>
+</section>
+
+<section class="section section--cream-soft">
+  <div class="container">
+    <div class="team-full">
+      <article class="team-member reveal">
+        <div class="team-member__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:80px;color:rgba(244,241,232,0.5);font-weight:700;letter-spacing:-0.03em;">C</div>
+        <div>
+          <div class="team-member__role">01 — Mécanique &amp; intégration</div>
+          <h2 class="team-member__name">Chloé</h2>
+          <p class="team-member__bio">Passionnée par la conception mécanique, Chloé pilote l'intégration physique du moteur électrique et la cohérence d'ensemble du nouveau système. Elle veille à ce que chaque pièce trouve sa place et son équilibre.</p>
+          <div class="team-member__skills"><span class="team-member__skill">CAO / SolidWorks</span><span class="team-member__skill">Calcul de structure</span><span class="team-member__skill">Intégration moteur</span></div>
+        </div>
+      </article>
+      <article class="team-member reveal">
+        <div class="team-member__photo" style="background:linear-gradient(135deg,#14422f,#255c40);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:80px;color:rgba(244,241,232,0.5);font-weight:700;letter-spacing:-0.03em;">A</div>
+        <div>
+          <div class="team-member__role">02 — Structures aéronautiques</div>
+          <h2 class="team-member__name">Alix</h2>
+          <p class="team-member__bio">Spécialisée en structures aéronautiques, Alix s'assure que la cellule de l'ULM résiste aux nouvelles contraintes de masse et de répartition liées au passage à l'électrique. Sécurité d'abord.</p>
+          <div class="team-member__skills"><span class="team-member__skill">Calcul aérodynamique</span><span class="team-member__skill">Composites</span><span class="team-member__skill">Certification</span></div>
+        </div>
+      </article>
+      <article class="team-member reveal">
+        <div class="team-member__photo" style="background:linear-gradient(135deg,#0f3828,#1e5038);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:80px;color:rgba(244,241,232,0.5);font-weight:700;letter-spacing:-0.03em;">H</div>
+        <div>
+          <div class="team-member__role">03 — Propulsion &amp; énergie</div>
+          <h2 class="team-member__name">Hugo</h2>
+          <p class="team-member__bio">Hugo travaille sur la chaîne de propulsion : moteur, batteries, BMS, gestion thermique. Son objectif : maximiser l'autonomie sans compromis sur la sécurité du système électrique embarqué.</p>
+          <div class="team-member__skills"><span class="team-member__skill">Électrotechnique</span><span class="team-member__skill">Batteries Li-ion</span><span class="team-member__skill">BMS</span></div>
+        </div>
+      </article>
+      <article class="team-member reveal">
+        <div class="team-member__photo" style="background:linear-gradient(135deg,#0a2e22,#18422e);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:80px;color:rgba(244,241,232,0.5);font-weight:700;letter-spacing:-0.03em;">Am</div>
+        <div>
+          <div class="team-member__role">04 — Communication aéro</div>
+          <h2 class="team-member__name">Amaël</h2>
+          <p class="team-member__bio">Amaël porte la voix de Revolt'air. Réseaux sociaux, vidéos, partenariats, salons : il fait connaître le projet et anime la communauté qui suit l'aventure jour après jour.</p>
+          <div class="team-member__skills"><span class="team-member__skill">Réalisation vidéo</span><span class="team-member__skill">Partenariats</span><span class="team-member__skill">Communauté</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container newsletter__inner">
+    <h2 class="newsletter__title">Vous voulez<br/>nous rejoindre&nbsp;?</h2>
+    <a href="mailto:revoltair@outlook.fr" class="btn btn--accent" style="justify-self: start;">Écrivez-nous</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container"><div class="footer__bottom"><div>© 2026 Revolt'air</div><div><a href="index.html">← Retour à l'accueil</a></div></div></div>
+</footer>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }}), { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

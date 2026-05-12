@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Journal — Revolt'air</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
+<link rel="stylesheet" href="site.css" />
+<style>
+.post { display: grid; grid-template-columns: 1fr; gap: 24px; padding: 40px 0; border-top: 1px solid rgba(8,54,36,0.12); }
+@media (min-width: 760px) { .post { grid-template-columns: 200px 1fr; gap: 56px; } }
+.post:last-child { border-bottom: 1px solid rgba(8,54,36,0.12); }
+.post__meta { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.08em; color: var(--c-green-mid); }
+.post__title { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 32px); color: var(--c-green-dark); margin: 6px 0 12px; line-height: 1.1; }
+.post__tag { display: inline-block; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(74,190,81,0.15); color: var(--c-green-mid); margin-top: 8px; }
+.post__excerpt { color: rgba(8,54,36,0.75); font-size: 15px; line-height: 1.55; margin: 8px 0 12px; max-width: 60ch; }
+.post__link { font-size: 13px; font-weight: 600; color: var(--c-green-mid); text-transform: uppercase; letter-spacing: 0.1em; }
+</style>
+
+<style>
+/* ---- Mobile nav fix ---- */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--c-green-dark);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 100;
+  }
+  .nav__links.is-open a {
+    color: var(--c-cream);
+    font-size: 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 101;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .nav__hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--c-green-dark);
+    display: block;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .nav__hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__cta { display: none; }
+}
+@media (min-width: 769px) {
+  .nav__hamburger { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="partenaires.html">Partenaires</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="soutenir.html">Soutenir</a></li>
+    </ul></nav>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" onclick="
+      const nav = document.querySelector('.nav__links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open');
+    ">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__cta"><a href="soutenir.html" class="btn btn--primary">Nous soutenir</a></div>
+  </div>
+</header>
+
+<section class="section section--cream" style="padding-top: 160px;">
+  <div class="container">
+    <div class="section__head reveal" style="max-width: 70ch;">
+      <div class="eyebrow">Journal de bord</div>
+      <h1 class="h-display" style="margin-top: 16px;">Le récit,<br/><em class="italic" style="color: var(--c-green);">trimestre après trimestre.</em></h1>
+      <p class="lede" style="margin-top: 28px;">Chaque étape du projet est documentée. Photos, vidéos, rapports techniques — nos partenaires reçoivent un suivi régulier de l'avancement.</p>
+    </div>
+
+    
+    <div class="reveal" style="border-radius: var(--r-lg); overflow: hidden; position: relative; padding-bottom: 56.25%; height: 0; background: var(--c-green-dark); margin-top: 48px;">
+      <iframe
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+        src="https://www.youtube.com/embed/LAt4kAwPY90"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        title="Revolt'air — le projet en vidéo"
+      ></iframe>
+    </div>
+    <p class="muted" style="text-align:center;font-size:13px;margin-top:14px;letter-spacing:0.06em;color:var(--c-green-mid);">Épisode 1 — naissance du projet · YouTube</p>
+
+<div class="reveal" style="margin-top: 48px;">
+      <article class="post" id="article-dec2025">
+        <div class="post__meta">Décembre 2025</div>
+        <div>
+          <span class="post__tag">Lancement</span>
+          <h2 class="post__title">L'ULM rejoint le hangar France ULM</h2>
+          <p class="post__excerpt">Après plusieurs semaines de préparation et grâce au soutien de Pépite Île-de-France pour le financement du rapatriement, notre ULM a rejoint le hangar mis à disposition par France ULM. Premier état des lieux, bilan mécanique complet et début des travaux de rénovation de la cellule. Une étape clé : l'appareil est désormais accessible pour toute l'équipe.</p>
+        </div>
+      </article>
+      <article class="post" id="article-nov2025">
+        <div class="post__meta">Novembre 2025</div>
+        <div>
+          <span class="post__tag">Propulsion</span>
+          <h2 class="post__title">Choix de la motorisation — F020 30 kW</h2>
+          <p class="post__excerpt">Après analyse comparative de plusieurs solutions disponibles sur le marché ULM électrique, nous avons retenu le moteur F020 30 kW, associé à deux packs batteries Li-ion de 5 kWh chacun, un BMS embarqué et un système de gestion thermique active. Ce choix assure le meilleur ratio puissance / masse / sécurité pour notre cellule. Les premiers schémas d'intégration sont en cours de validation.</p>
+        </div>
+      </article>
+      <article class="post" id="article-oct2025">
+        <div class="post__meta">Octobre 2025</div>
+        <div>
+          <span class="post__tag">Équipe</span>
+          <h2 class="post__title">Revolt'air, c'est parti — naissance d'un projet</h2>
+          <p class="post__excerpt">Chloé, Alix, Hugo et Amaël — quatre étudiants de l'IPSA — décident de transformer un ULM thermique en 100% électrique. Pas de concept paper, pas de maquette : un vrai appareil, une vraie recertification, un vrai premier vol planifié fin 2026. Revolt'air est né d'une conviction simple — l'aviation légère est le terrain idéal pour démontrer, par les actes, que les technologies propres sont déjà matures.</p>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top: 56px; padding: 40px; background: var(--c-cream-soft); border-radius: var(--r-lg); text-align: center;">
+      <p class="muted" style="font-size: 14px; letter-spacing: 0.06em;">Plus de récits à venir au fil de l'avancement.</p>
+      <a href="mailto:revoltair@outlook.fr?subject=Inscription newsletter Revolt'air&body=Bonjour, je souhaite recevoir les actualités du projet Revolt'air par email." class="btn btn--ghost" style="margin-top: 16px;">S'inscrire à la newsletter ✉</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border: 0; padding-top: 0;">
+      <div>© 2026 Revolt'air · <a href="index.html" style="text-decoration: underline;">Retour à l'accueil</a></div>
+      <div>revoltair@outlook.fr · 06 19 86 23 36</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onS = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onS, { passive: true }); onS();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }}), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

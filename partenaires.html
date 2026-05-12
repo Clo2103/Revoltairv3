@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Partenaires — Revolt'air</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
+<link rel="stylesheet" href="site.css" />
+<style>
+  .page-hero { padding: 180px 0 80px; background: var(--c-cream); }
+  .partner-card { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-top: 1px solid rgba(8,54,36,0.15); }
+  .partner-card:last-child { border-bottom: 1px solid rgba(8,54,36,0.15); }
+  @media (max-width: 760px) { .partner-card { grid-template-columns: 1fr; } }
+  .partner-card__logo { aspect-ratio: 4/3; background: var(--c-cream-soft); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 22px; color: var(--c-green-dark); }
+  .partner-card__name { font-family: var(--font-display); font-size: 32px; color: var(--c-green-dark); margin: 0 0 6px; }
+  .partner-card__role { font-size: 13px; letter-spacing: 0.06em; color: var(--c-green-mid); text-transform: uppercase; margin-bottom: 16px; }
+  .partner-card__desc { font-size: 16px; line-height: 1.6; color: var(--c-ink); }
+  .tier-block { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 880px) { .tier-block { grid-template-columns: repeat(3, 1fr); } }
+  .tier-card { background: var(--c-cream-soft); border-radius: var(--r-lg); padding: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .tier-card--gold { background: var(--c-green-dark); color: var(--c-cream); position: relative; }
+  .tier-card--gold .tier-card__title, .tier-card--gold .tier-card__price { color: var(--c-cream); }
+  .tier-card__rank { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+  .tier-card__title { font-family: var(--font-display); font-size: 28px; color: var(--c-green-dark); margin: 0; }
+  .tier-card__price { font-family: var(--font-display); font-size: 44px; color: var(--c-green-dark); margin: 8px 0; line-height: 1; }
+  .tier-card__list { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+  .tier-card__list li { display: flex; gap: 10px; }
+  .tier-card__list li::before { content: "✓"; color: var(--c-green); font-weight: 700; }
+  .tier-card__list li.off { opacity: 0.4; }
+  .tier-card__list li.off::before { content: "·"; color: currentColor; }
+  body.v-immersif .partner-card__logo, body.v-immersif .tier-card { background: #081512; color: var(--c-cream); }
+  body.v-immersif .tier-card__title, body.v-immersif .tier-card__price, body.v-immersif .partner-card__name { color: var(--c-cream); }
+</style>
+
+<style>
+/* ---- Mobile nav fix ---- */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--c-green-dark);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 100;
+  }
+  .nav__links.is-open a {
+    color: var(--c-cream);
+    font-size: 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .nav__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 101;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .nav__hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--c-green-dark);
+    display: block;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .nav__hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__cta { display: none; }
+}
+@media (min-width: 769px) {
+  .nav__hamburger { display: none; }
+}
+</style>
+</head>
+<body data-screen-label="Partenaires">
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html#projet">Le projet</a></li><li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="partenaires.html">Partenaires</a></li><li><a href="journal.html">Journal</a></li>
+      <li><a href="soutenir.html">Soutenir</a></li>
+    </ul></nav>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" onclick="
+      const nav = document.querySelector('.nav__links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open');
+    ">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__cta"><a href="soutenir.html" class="btn btn--primary">Nous soutenir</a></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Ils nous soutiennent</div>
+    <h1 class="h-display" style="margin-top: 18px;">Nos<br/>partenaires.</h1>
+    <p class="lede" style="margin-top: 28px;">Soutiens académiques, fédération nationale et réseau étudiants entrepreneurs : ils ont fait le choix de croire en Revolt'air dès le départ.</p>
+  </div>
+</section>
+
+<section class="section section--cream-soft">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom: 24px;">Soutiens actuels</div>
+    <article class="partner-card reveal">
+      <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#003087;letter-spacing:0.05em;text-align:center;">IPSA<br/><span style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);">ÉCOLE D'INGÉNIEURS</span></div>
+      </div>
+      <div><h2 class="partner-card__name">IPSA</h2><div class="partner-card__role">École d'ingénieurs aéronautique</div><p class="partner-card__desc">Soutien académique, accompagnement projet, accès aux ateliers et expertise technique. L'IPSA est le berceau de Revolt'air.</p></div>
+    </article>
+    <article class="partner-card reveal">
+      <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:24px;font-weight:700;color:#003087;letter-spacing:0.04em;">FRANCE</div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:#e8261a;letter-spacing:0.08em;">ULM</div>
+          <div style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);margin-top:4px;">FÉDÉRATION NATIONALE</div>
+        </div>
+      </div>
+      <div><h2 class="partner-card__name">France ULM</h2><div class="partner-card__role">Fédération nationale</div><p class="partner-card__desc">Place dans leur hangar, mise en réseau avec la communauté ULM française et expertise réglementaire pour la recertification.</p></div>
+    </article>
+    <article class="partner-card reveal">
+      <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:#5c35b0;letter-spacing:0.06em;">pépite</div>
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:400;color:var(--c-green-mid);letter-spacing:0.08em;">Île-de-France</div>
+          <div style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);margin-top:4px;">RÉSEAU ENTREPRENEURS</div>
+        </div>
+      </div>
+      <div><h2 class="partner-card__name">Pépite Île-de-France</h2><div class="partner-card__role">Réseau étudiants entrepreneurs</div><p class="partner-card__desc">Financement du rapatriement de l'ULM, accompagnement entrepreneurial et mise en réseau avec d'autres porteurs de projets.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="section section--cream">
+  <div class="container">
+    <div class="section__head"><div class="eyebrow">Devenir partenaire</div><h2 class="h-section" style="margin-top:14px;">Trois paliers,<br/>une même envie.</h2></div>
+    <div class="tier-block">
+      <article class="tier-card reveal"><div class="tier-card__rank">Bronze</div><h3 class="tier-card__title">Visibilité essentielle</h3><div class="tier-card__price">1&nbsp;000&nbsp;€</div>
+        <ul class="tier-card__list"><li>Logo compact sur l'ULM</li><li>Visibilité sur tous nos supports</li><li class="off">Publications dédiées</li><li class="off">Mise en avant réseaux</li><li class="off">Vidéo de remerciement</li></ul>
+      </article>
+      <article class="tier-card reveal"><div class="tier-card__rank">Argent</div><h3 class="tier-card__title">Visibilité étendue</h3><div class="tier-card__price">2&nbsp;500&nbsp;€</div>
+        <ul class="tier-card__list"><li>Logo format moyen sur l'ULM</li><li>Visibilité sur tous nos supports</li><li>Publications dédiées</li><li class="off">Mise en avant réseaux</li><li class="off">Vidéo de remerciement</li></ul>
+      </article>
+      <article class="tier-card tier-card--gold reveal"><div class="tier-card__rank">Or — recommandé</div><h3 class="tier-card__title">Partenaire principal</h3><div class="tier-card__price">5&nbsp;000&nbsp;€</div>
+        <ul class="tier-card__list"><li>Logo grand format sur l'ULM</li><li>Visibilité sur tous nos supports</li><li>Publications dédiées</li><li>Mise en avant réseaux</li><li>Vidéo de remerciement personnalisée</li></ul>
+      </article>
+    </div>
+    <div style="text-align:center; margin-top:48px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="soutenir.html" class="btn btn--primary">Nous contacter pour un partenariat</a>
+      <a href="https://www.helloasso.com/associations/revolt-air/formulaires/1" target="_blank" rel="noopener" class="btn btn--ghost">Faire un don libre ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__bottom"><div>© 2026 Revolt'air</div><div><a href="index.html">← Retour à l'accueil</a></div></div></div></footer>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
+<script>
+  const nav=document.getElementById('nav'); const o=()=>nav.classList.toggle('is-scrolled',window.scrollY>40);
+  window.addEventListener('scroll',o,{passive:true}); o();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}}),{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
