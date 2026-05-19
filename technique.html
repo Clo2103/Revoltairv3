@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Technique — Revolt'air</title>
+<meta name="description" content="Tout comprendre sur le retrofit électrique de Revolt'air : moteur, batteries, autonomie et budget. Les vraies réponses, issues de nos études d'ingénierie." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
+<link rel="stylesheet" href="site.css?v=4" />
+<style>
+/* ── Layout FAQ ── */
+.faq-section {
+  border-top: 1px solid rgba(8,54,36,0.12);
+  padding: clamp(48px, 8vh, 96px) 0;
+}
+.faq-section:first-child { border-top: 0; }
+
+.faq-section__head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+/* ── Q&A ── */
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.qa-item {
+  border-top: 1px solid rgba(8,54,36,0.1);
+}
+.qa-item:last-child { border-bottom: 1px solid rgba(8,54,36,0.1); }
+.qa-item summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 500;
+  color: var(--c-green-dark);
+  transition: color 0.2s;
+}
+.qa-item summary::-webkit-details-marker { display: none; }
+.qa-item summary:hover { color: var(--c-green-mid); }
+.qa-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--c-green);
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+  line-height: 1;
+}
+.qa-item[open] summary::after { transform: rotate(45deg); }
+.qa-item[open] summary { color: var(--c-green-dark); }
+.qa-answer {
+  padding: 0 0 32px;
+  color: var(--c-ink);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 72ch;
+}
+.qa-answer p + p { margin-top: 14px; }
+.qa-answer strong { color: var(--c-green-dark); font-weight: 600; }
+
+/* ── Tableaux ── */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  font-size: 15px;
+}
+.spec-table th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-green-mid);
+  padding: 12px 16px;
+  background: rgba(8,54,36,0.04);
+  border-bottom: 2px solid rgba(8,54,36,0.12);
+}
+.spec-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(8,54,36,0.08);
+  vertical-align: top;
+}
+.spec-table tr:last-child td { border-bottom: 0; }
+.spec-table td:first-child { font-weight: 600; color: var(--c-green-dark); width: 40%; }
+.spec-table--compare td:nth-child(2) { background: rgba(74,190,81,0.06); color: var(--c-green-dark); font-weight: 500; }
+.spec-table--compare thead th:nth-child(2) { background: rgba(74,190,81,0.1); color: var(--c-green-dark); }
+
+/* ── Blocs de stats inline ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+@media (min-width: 680px) { .stat-row { grid-template-columns: repeat(4, 1fr); } }
+.stat-block {
+  background: var(--c-cream-soft);
+  border-radius: var(--r-md);
+  padding: 20px;
+  border-top: 3px solid var(--c-green);
+}
+.stat-block__num {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--c-green-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-block__label {
+  font-size: 12px;
+  color: rgba(8,54,36,0.65);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Budget barres ── */
+.budget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+.budget-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+.budget-item__label { font-size: 14px; color: var(--c-ink); font-weight: 500; }
+.budget-item__bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  grid-column: 1 / -1;
+}
+.budget-item__bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(8,54,36,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.budget-item__fill {
+  height: 100%;
+  background: var(--c-green);
+  border-radius: inherit;
+}
+.budget-item__amount {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-green-dark);
+  white-space: nowrap;
+}
+
+/* ── Callout ── */
+.callout {
+  background: rgba(74,190,81,0.08);
+  border: 1px solid rgba(74,190,81,0.3);
+  border-left: 4px solid var(--c-green);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 20px 24px;
+  margin-top: 20px;
+  font-size: 15px;
+  color: var(--c-green-dark);
+  line-height: 1.55;
+}
+.callout strong { font-weight: 700; }
+
+/* ── Listes dans les réponses ── */
+.qa-answer ul { margin: 12px 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; list-style: disc; }
+.qa-answer li { font-size: 16px; line-height: 1.6; color: var(--c-ink); }
+
+/* ── Split layout ── */
+.faq-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (min-width: 880px) { .faq-split { grid-template-columns: 1fr 1fr; gap: 72px; } }
+
+/* ── Mobile nav ── */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__links.is-open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--c-green-dark);
+    justify-content: center; align-items: center; gap: 32px; z-index: 100;
+  }
+  .nav__links.is-open a { color: var(--c-cream); font-size: 22px; font-family: var(--font-display); font-weight: 600; }
+  .nav__hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; background: none; border: none; padding: 8px; }
+  .nav__hamburger span { width: 24px; height: 2px; background: var(--c-green-dark); display: block; transition: all 0.3s; border-radius: 2px; }
+  .nav__hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__cta { display: none; }
+}
+@media (min-width: 769px) { .nav__hamburger { display: none; } }
+</style>
+</head>
+<body data-screen-label="Technique">
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="logo.png" alt="Revolt'air" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="technique.html">Technique</a></li>
+      <li><a href="partenaires.html">Partenaires</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="soutenir.html">Soutenir</a></li>
+    </ul></nav>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" onclick="
+      const nav = document.querySelector('.nav__links');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('is-open');
+      btn.classList.toggle('is-open');
+    "><span></span><span></span><span></span></button>
+    <div class="nav__cta"><a href="soutenir.html" class="btn btn--primary">Nous soutenir</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="section section--cream" style="padding-top: 160px; padding-bottom: 64px;">
+  <div class="container">
+    <div class="reveal" style="max-width: 72ch;">
+      <div class="eyebrow">Questions techniques</div>
+      <h1 class="h-display" style="margin-top: 16px;">Le projet,<br/>sans jargon<br/><em class="italic" style="color: var(--c-green);">ni raccourci.</em></h1>
+      <p class="lede" style="margin-top: 28px;">Qu'est-ce que le retrofit ? Pourquoi ne pas acheter un ULM électrique neuf ? Quelle autonomie réelle ? Quels coûts ? Les vraies réponses, issues de nos études d'ingénierie et de notre dossier technique.</p>
+    </div>
+
+    <!-- Stats clés -->
+    <div class="stat-row reveal" style="margin-top: 56px;">
+      <div class="stat-block">
+        <div class="stat-block__num">30 kW</div>
+        <div class="stat-block__label">Moteur brushless<br/>MAD F030</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-block__num">22 kWh</div>
+        <div class="stat-block__label">Capacité batterie<br/>Li-ion embarquée</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-block__num">85 min</div>
+        <div class="stat-block__label">Autonomie totale<br/>vol + réserve</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-block__num">1,60 €</div>
+        <div class="stat-block__label">Coût par heure<br/>de vol électrique</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1 : LE RETROFIT -->
+<section class="section section--cream-soft" style="padding-top: 0;">
+  <div class="container">
+
+    <div class="faq-section reveal">
+      <div class="faq-section__head">
+        <div class="eyebrow">01 · Le retrofit</div>
+        <h2 class="h-section" style="margin-top: 10px;">Transformer,<br/>pas remplacer.</h2>
+      </div>
+      <div class="qa-list">
+
+        <details class="qa-item">
+          <summary>Qu'est-ce que le retrofit électrique ?</summary>
+          <div class="qa-answer">
+            <p>Le <strong>retrofit</strong> consiste à convertir un aéronef à motorisation thermique existant en propulsion 100 % électrique, sans changer sa cellule ni concevoir un appareil neuf. On remplace le groupe motopropulseur (moteur, réservoir, système d'allumage) par un ensemble électrique : moteur brushless, packs de batteries lithium-ion et contrôleur électronique.</p>
+            <p>C'est une démarche de <strong>rénovation technique et patrimoniale</strong> : l'appareil existant est conservé, rénové, et sa durée de vie est prolongée de plusieurs décennies, tout en éliminant ses émissions directes de CO₂.</p>
+            <div class="callout">
+              <strong>Notre cas concret :</strong> nous rétrofitons un ULM Cormorano biplace (Ferrari ULM, 1986), dont le moteur thermique Rotax 582/2 (54,4 ch) est remplacé par un moteur brushless MAD F030 de 30 kW.
+            </div>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Pourquoi faire un retrofit plutôt qu'acheter un ULM électrique neuf ?</summary>
+          <div class="qa-answer">
+            <p>La réponse est avant tout <strong>économique et environnementale</strong>.</p>
+            <p>Un ULM électrique neuf comparable (biplace, certifié) coûte entre <strong>50 000 € et 100 000 €</strong> à l'achat. La conversion d'un appareil existant revient à environ <strong>32 400 €</strong> pour Revolt'air, soit un coût deux à trois fois inférieur.</p>
+            <p>Sur le plan environnemental, construire un appareil neuf génère une empreinte carbone importante liée à la fabrication (matériaux composites, aluminium, etc.). Le retrofit réutilise une cellule saine et évite cette dépense énergétique initiale. C'est une démarche d'<strong>économie circulaire appliquée à l'aéronautique</strong>.</p>
+            <p>Enfin, pour les écoles de pilotage et aéroclubs qui possèdent déjà des appareils, le retrofit représente une voie directe vers la transition électrique sans renouveler intégralement leur flotte.</p>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Quel appareil avez-vous choisi et pourquoi le Cormorano ?</summary>
+          <div class="qa-answer">
+            <p>Nous avons choisi le <strong>ULM Cormorano</strong>, conçu par Ferrari ULM en 1986. C'est un biplace côte à côte à train tricycle fixe, dont la structure en tubes d'alliage d'aluminium et entoilage Dacron constitue une base idéale pour une conversion électrique.</p>
+            <p>Plusieurs raisons ont guidé ce choix :</p>
+            <ul>
+              <li>Sa <strong>structure tubulaire simple</strong> facilite l'accès aux zones d'intégration du moteur et des batteries.</li>
+              <li>Sa <strong>cellule saine</strong> : acquis en bon état structurel, il a nécessité une remise à niveau (commandes de vol, boulonnerie, tableau de bord) mais pas de reconstruction.</li>
+              <li>Sa <strong>MTOW de 450 kg</strong> laisse une marge suffisante pour intégrer le pack batterie (environ 75 kg) tout en restant dans les limites de la catégorie ULM.</li>
+              <li>C'est un <strong>appareil rare</strong> dont la rénovation a une valeur patrimoniale supplémentaire.</li>
+            </ul>
+
+            <table class="spec-table" style="margin-top:20px;">
+              <thead><tr><th>Caractéristique</th><th>Valeur (configuration thermique)</th></tr></thead>
+              <tbody>
+                <tr><td>Type</td><td>ULM biplace côte à côte, train tricycle fixe</td></tr>
+                <tr><td>Structure</td><td>Tubes alliage aluminium + entoilage Dacron</td></tr>
+                <tr><td>Moteur d'origine</td><td>Rotax 582/2, 54,4 ch (40 kW)</td></tr>
+                <tr><td>Envergure</td><td>10,2 m</td></tr>
+                <tr><td>Longueur</td><td>5,8 m</td></tr>
+                <tr><td>Surface alaire</td><td>18 m²</td></tr>
+                <tr><td>Masse à vide</td><td>~275 kg</td></tr>
+                <tr><td>MTOW</td><td>450 kg</td></tr>
+                <tr><td>Vitesse de croisière</td><td>105 km/h</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2 : PROPULSION -->
+    <div class="faq-section reveal">
+      <div class="faq-section__head">
+        <div class="eyebrow">02 · La propulsion électrique</div>
+        <h2 class="h-section" style="margin-top: 10px;">Moteur, batteries,<br/>performances.</h2>
+      </div>
+      <div class="qa-list">
+
+        <details class="qa-item">
+          <summary>Quel moteur électrique allez-vous installer ?</summary>
+          <div class="qa-answer">
+            <p>Nous avons retenu le <strong>MAD F030</strong>, un moteur brushless (sans balais) de <strong>30 kW</strong> développant un rendement supérieur à 90 %. Son poids est d'environ <strong>4 kg</strong>, contre près de 40 kg pour le Rotax 582/2 d'origine.</p>
+            <p>Un moteur brushless offre plusieurs avantages déterminants :</p>
+            <ul>
+              <li><strong>Couple élevé dès le démarrage :</strong> contrairement au thermique, l'électrique donne son couple maximal immédiatement, ce qui améliore les performances au décollage et en montée.</li>
+              <li><strong>Quasi-absence de maintenance :</strong> sans pièces en frottement (bougies, courroies, joints d'huile), l'entretien est minimal.</li>
+              <li><strong>Bruit réduit :</strong> le profil acoustique du Cormorano électrique sera significativement plus silencieux qu'en configuration thermique.</li>
+              <li><strong>Rendement supérieur :</strong> plus de 90 % contre 30 à 35 % pour un moteur à explosion.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Quelles batteries sont embarquées ?</summary>
+          <div class="qa-answer">
+            <p>Nous embarquons un pack de batteries <strong>lithium-ion (Li-ion)</strong> d'une capacité totale de <strong>22 kWh</strong>, opérant à une tension de <strong>100 V</strong>, pour un poids d'environ <strong>75 kg</strong>.</p>
+            <p>Le pack intègre un <strong>BMS</strong> (Battery Management System) qui surveille en temps réel l'état de charge, la température et l'équilibre entre les cellules. Une gestion thermique à air (ventilation naturelle des modules) assure le bon fonctionnement en vol.</p>
+            <p>Les batteries sont placées <strong>à l'arrière de la cabine</strong>, afin de conserver un centrage longitudinal proche de la configuration d'origine et de maintenir la stabilité de l'appareil.</p>
+            <div class="callout"><strong>Recharge :</strong> quelques heures sur une prise secteur standard, selon la puissance du chargeur utilisé. Compatible avec les infrastructures électriques existantes sur les aérodromes.</div>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Quelle autonomie en vol électrique ?</summary>
+          <div class="qa-answer">
+            <p>Nos calculs préliminaires estiment l'autonomie à <strong>55 minutes de vol effectif</strong>, auxquelles s'ajoutent <strong>30 minutes de réserve réglementaire</strong>, soit <strong>85 minutes d'autonomie totale</strong>.</p>
+            <p>La consommation moyenne en vol palier est de <strong>8 kWh</strong>. Ce chiffre sera affiné lors des essais au sol et en vol.</p>
+            <p>Pour comparaison, la plupart des vols d'entraînement ULM durent entre 30 et 60 minutes : l'autonomie du Cormorano électrique est donc tout à fait adaptée à un usage d'école de pilotage ou de loisir local.</p>
+
+            <div class="stat-row" style="margin-top: 24px;">
+              <div class="stat-block"><div class="stat-block__num">55 min</div><div class="stat-block__label">Vol effectif estimé</div></div>
+              <div class="stat-block"><div class="stat-block__num">30 min</div><div class="stat-block__label">Réserve réglementaire</div></div>
+              <div class="stat-block"><div class="stat-block__num">8 kWh</div><div class="stat-block__label">Consommation palier</div></div>
+              <div class="stat-block"><div class="stat-block__num">&gt;3 m/s</div><div class="stat-block__label">Taux de montée</div></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Les performances électriques sont-elles meilleures que le thermique ?</summary>
+          <div class="qa-answer">
+            <p>Sur plusieurs indicateurs, <strong>oui</strong>. Le taux de montée estimé dépasse les <strong>3 m/s</strong>, ce qui est supérieur à la configuration Rotax 582 d'origine. Le couple immédiat du moteur brushless confère une réactivité accrue, particulièrement utile au décollage et lors des montées initiales.</p>
+            <p>La vitesse de croisière reste comparable (~105 km/h), le cadre réglementaire ULM imposant une limite d'environ 140 km/h. L'avantage électrique se manifeste principalement sur le silence, le confort (pas de vibrations moteur) et la réactivité du groupe propulseur.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3 : INGÉNIERIE -->
+<section class="section section--cream">
+  <div class="container">
+    <div class="faq-section reveal">
+      <div class="faq-section__head">
+        <div class="eyebrow">03 · L'ingénierie</div>
+        <h2 class="h-section" style="margin-top: 10px;">Ce qu'on a<br/>vraiment calculé.</h2>
+      </div>
+      <div class="qa-list">
+
+        <details class="qa-item">
+          <summary>Quelles études d'ingénierie avez-vous menées ?</summary>
+          <div class="qa-answer">
+            <p>Le projet Revolt'air repose sur une analyse multidisciplinaire complète, menée dans le cadre de notre PMI à l'IPSA. Six études principales ont été conduites :</p>
+            <p><strong>Étude de propulsion</strong> :Calcul de la puissance nécessaire au vol en palier et au décollage. C'est cette étude qui a conduit au choix du MAD F030 30 kW.</p>
+            <p><strong>Étude de masse et centrage</strong> :Intégration des nouvelles masses (moteur, batteries, câblage) dans un bilan avant/après conversion, afin de maintenir la stabilité longitudinale et le respect de la MTOW de 450 kg.</p>
+            <p><strong>Étude de refroidissement</strong> :Analyse de la gestion thermique du moteur et des batteries pour garantir un fonctionnement optimal. Système retenu : refroidissement à air et ventilation naturelle.</p>
+            <p><strong>Étude de structure</strong> :Vérifications mécaniques sur le support moteur et la reprise des efforts de traction. La structure tubulaire aluminium d'origine offre une base solide adaptée.</p>
+            <p><strong>Calculs de performances</strong> :Estimation du taux de montée, vitesse de croisière, autonomie. Ces données seront affinées lors des essais en vol.</p>
+            <p><strong>Analyse de sécurité électrique</strong> :Protections haute tension, disjonctions, coupe-circuits, balisage des zones sous tension et procédures d'urgence.</p>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Comment gérez-vous le problème de masse lié aux batteries ?</summary>
+          <div class="qa-answer">
+            <p>C'est un enjeu central du retrofit électrique. Le pack batterie Li-ion pèse environ <strong>75 kg</strong>, alors que le moteur thermique Rotax 582 pesait ~40 kg avec ses accessoires (réservoir, liquides, système d'allumage).</p>
+            <p>Le delta de masse (~35 kg supplémentaires) reste absorbable par la <strong>marge de masse à vide du Cormorano</strong> (275 kg à vide, MTOW 450 kg), en veillant à ne pas dépasser la limite avec l'équipage à bord.</p>
+            <p>La position des batteries (<strong>arrière de cabine, proche du centre de gravité</strong>) permet de minimiser l'impact sur le centrage longitudinal. Le bilan de masse complet montre que la stabilité de l'appareil est maintenue dans les limites certifiées.</p>
+          </div>
+        </details>
+
+        <details class="qa-item">
+          <summary>Quelles mesures de sécurité électrique sont prévues ?</summary>
+          <div class="qa-answer">
+            <p>La sécurité est notre priorité absolue. Le système embarqué prévoit :</p>
+            <ul>
+              <li><strong>BMS (Battery Management System) :</strong> surveillance temps réel de chaque cellule (température, tension, courant). Coupure automatique en cas d'anomalie.</li>
+              <li><strong>Coupe-circuit principal :</strong> accessible en cabine, permet l'isolation immédiate du circuit haute tension en cas d'urgence.</li>
+              <li><strong>Disjoncteurs différentiels :</strong> protection contre les courts-circuits et fuites de courant.</li>
+              <li><strong>Balisage haute tension :</strong> toutes les zones sous tension sont identifiées et protégées mécaniquement.</li>
+              <li><strong>Procédures d'urgence dédiées :</strong> check-list spécifique pour les pannes moteur, surchauffe batterie et dysfonctionnement BMS, rédigée en amont des essais.</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 : BUDGET & COÛTS -->
+<section class="section section--cream-soft">
+  <div class="container">
+    <div class="reveal">
+      <div class="faq-section">
+        <div class="faq-section__head">
+          <div class="eyebrow">04 · Budget &amp; coûts</div>
+          <h2 class="h-section" style="margin-top: 10px;">Les vrais chiffres,<br/>sans tabou.</h2>
+        </div>
+
+        <div class="faq-split">
+          <div>
+            <div class="qa-list">
+              <details class="qa-item">
+                <summary>Quel est le budget total du projet ?</summary>
+                <div class="qa-answer">
+                  <p>Le budget global prévisionnel du projet Revolt'air est estimé à <strong>32 400 €</strong>, défini à partir de devis fournisseurs et d'estimations techniques précises.</p>
+                  <p>Ce budget couvre la totalité de la conversion, de la rénovation de la cellule jusqu'aux essais en vol et à la recertification réglementaire.</p>
+                  <div class="callout">À ce jour, <strong>1 600 € ont été collectés</strong> grâce à nos partenaires actuels. Il reste 30 800 € à financer pour atteindre le premier vol fin 2026.</div>
+                </div>
+              </details>
+
+              <details class="qa-item">
+                <summary>Le vol électrique est-il vraiment moins cher ?</summary>
+                <div class="qa-answer">
+                  <p>En coûts d'exploitation, <strong>oui, très largement</strong>. La comparaison est éloquente :</p>
+                  <table class="spec-table spec-table--compare" style="margin-top: 16px;">
+                    <thead><tr><th>Poste</th><th>Électrique</th><th>Thermique (Rotax)</th></tr></thead>
+                    <tbody>
+                      <tr><td>Carburant / heure</td><td>1,60 €<br/><small style="opacity:0.7;">(8 kWh × 0,20 €)</small></td><td>37 €<br/><small style="opacity:0.7;">(15 L × 2,50 €)</small></td></tr>
+                      <tr><td>Maintenance moteur</td><td>Quasi nulle</td><td>Révision obligatoire ~toutes les 300 h</td></tr>
+                      <tr><td>Huile &amp; filtres</td><td>0 €</td><td>~50 €/an</td></tr>
+                      <tr><td>Bruit</td><td>Très silencieux</td><td>~80 dB(A) en vol</td></tr>
+                      <tr><td>Émissions CO₂</td><td>0 g/km</td><td>~250 g/km</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+
+              <details class="qa-item">
+                <summary>Qui sont vos concurrents sur ce marché ?</summary>
+                <div class="qa-answer">
+                  <p>Trois acteurs proposent des approches voisines, sans offrir exactement ce que fait Revolt'air :</p>
+                  <ul>
+                    <li><strong>Flying Home :</strong> spécialisé dans les paramoteurs électriques (très légers, usage loisir).</li>
+                    <li><strong>Corsair Emotion :</strong> ULM électriques neufs, à un coût 2 à 3 fois supérieur au retrofit.</li>
+                    <li><strong>Aura Aéros :</strong> avions légers électriques, segment au-dessus des ULM.</li>
+                  </ul>
+                  <p>Notre avantage différentiant : nous sommes le seul projet à proposer un <strong>retrofit d'ULM existant</strong> en France, sur un appareil réel en cours de conversion. Pas un concept, pas une étude de faisabilité, mais un démonstrateur qui vole fin 2026.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="h-sub" style="margin-bottom: 8px;">Détail du budget</h3>
+            <p style="font-size: 14px; color: rgba(8,54,36,0.65); margin-bottom: 8px;">Budget prévisionnel : <strong style="color:var(--c-green-dark);">32 400 €</strong></p>
+            <div class="budget-list">
+              <div class="budget-item">
+                <div class="budget-item__label">Batteries (4 packs Li-ion)</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:39.5%;"></div></div>
+                  <div class="budget-item__amount">12 800 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Structure &amp; cellule</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:18.5%;"></div></div>
+                  <div class="budget-item__amount">6 000 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Moteur, contrôleur, câblage, BMS</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:23.5%;"></div></div>
+                  <div class="budget-item__amount">7 600 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Recertification &amp; essais en vol</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:9.3%;"></div></div>
+                  <div class="budget-item__amount">3 000 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Poste de pilotage &amp; instruments</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:4.6%;"></div></div>
+                  <div class="budget-item__amount">1 500 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Outillage &amp; atelier</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:3.1%;"></div></div>
+                  <div class="budget-item__amount">1 000 €</div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-item__label">Communication &amp; valorisation</div>
+                <div class="budget-item__bar-wrap">
+                  <div class="budget-item__bar"><div class="budget-item__fill" style="width:1.5%;"></div></div>
+                  <div class="budget-item__amount">500 €</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="newsletter">
+  <div class="container newsletter__inner reveal">
+    <div>
+      <h2 class="newsletter__title">Une question<br/>sans réponse&nbsp;?</h2>
+      <p style="color: rgba(244,241,232,0.75); margin-top: 14px; font-size: 16px; max-width: 40ch;">Nos ingénieurs répondent directement. Écrivez-nous, nous serons ravis d'échanger.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap: 14px; align-items: flex-start;">
+      <a href="mailto:revoltair@outlook.fr?subject=Question technique Revolt'air" class="btn btn--accent">Poser une question technique →</a>
+      <a href="soutenir.html" class="btn btn--ghost" style="color: var(--c-cream); border-color: rgba(244,241,232,0.35);">Devenir partenaire</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border: 0; padding-top: 0;">
+      <div>© 2026 Revolt'air · <a href="index.html" style="text-decoration: underline;">Retour à l'accueil</a></div>
+      <div>revoltair@outlook.fr · 06 19 86 23 36</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNa3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
+<script>
+  const nav = document.getElementById('nav');
+  const onS = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onS, { passive: true }); onS();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }}), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

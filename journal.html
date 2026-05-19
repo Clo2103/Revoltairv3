@@ -4,10 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Journal — Revolt'air</title>
+<meta name="description" content="Le journal de bord de Revolt'air : chaque étape du projet documentée trimestre après trimestre, de l'atelier au premier vol." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
-<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="site.css?v=4" />
 <style>
 .post { display: grid; grid-template-columns: 1fr; gap: 24px; padding: 40px 0; border-top: 1px solid rgba(8,54,36,0.12); }
 @media (min-width: 760px) { .post { grid-template-columns: 200px 1fr; gap: 56px; } }
@@ -68,14 +69,15 @@
 }
 </style>
 </head>
-<body>
+<body data-screen-label="Journal">
 
 <header class="nav" id="nav">
   <div class="container nav__inner">
-    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <a href="index.html" class="nav__brand"><img src="logo.png" alt="Revolt'air" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
     <nav><ul class="nav__links">
       <li><a href="index.html#projet">Le projet</a></li>
       <li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="technique.html">Technique</a></li>
       <li><a href="partenaires.html">Partenaires</a></li>
       <li><a href="journal.html">Journal</a></li>
       <li><a href="soutenir.html">Soutenir</a></li>
@@ -155,6 +157,11 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
 <script>
   const nav = document.getElementById('nav');
   const onS = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);

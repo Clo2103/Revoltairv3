@@ -20,17 +20,17 @@ function SiteTweaks() {
 
   return (
     <TweaksPanel title="Tweaks">
-      <TweakSection title="Direction visuelle">
+      <TweakSection label="Direction visuelle">
         <TweakRadio label="Version" value={t.version} options={[
           { value: 'editorial', label: 'Éditorial' },
           { value: 'immersif', label: 'Immersif' }
         ]} onChange={v => setTweak('version', v)} />
       </TweakSection>
-      <TweakSection title="Couleurs">
+      <TweakSection label="Couleurs">
         <TweakColor label="Accent" value={t.accent} options={['#4abe51', '#5dd5ff', '#ffb627', '#e63946']} onChange={v => setTweak('accent', v)} />
         <TweakColor label="Vert profond" value={t.darkBg} options={['#083624', '#0a4d34', '#1a2820', '#020705']} onChange={v => setTweak('darkBg', v)} />
       </TweakSection>
-      <TweakSection title="Hero">
+      <TweakSection label="Hero">
         <TweakToggle label="Indicateur de scroll" value={t.showScrollHint} onChange={v => setTweak('showScrollHint', v)} />
       </TweakSection>
     </TweaksPanel>

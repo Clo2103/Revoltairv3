@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
-<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="site.css?v=4" />
 
 <style>
 /* ---- Mobile nav fix ---- */
@@ -71,13 +71,14 @@
 <header class="nav" id="nav">
   <div class="container nav__inner">
     <a href="index.html" class="nav__brand">
-      <img src="assets/logo.png" alt="Revolt'air" />
+      <img src="logo.png" alt="Revolt'air" />
       <span>Revolt<span class="nav__brand-em">'air</span></span>
     </a>
     <nav>
       <ul class="nav__links">
         <li><a href="#projet">Le projet</a></li>
         <li><a href="equipe.html">L'équipe</a></li>
+        <li><a href="technique.html">Technique</a></li>
         <li><a href="partenaires.html">Partenaires</a></li>
         <li><a href="journal.html">Journal</a></li>
         <li><a href="soutenir.html">Soutenir</a></li>
@@ -103,13 +104,15 @@
 <!-- ============== HERO ============== -->
 <section class="hero" data-screen-label="01 Hero">
   <div class="hero__media">
-    <!-- Image de fond ULM -->
-    <img
-      src="assets/moodboard.png"
-      alt="ULM Revolt'air"
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"
-      onerror="this.style.display='none'"
-    />
+    <!-- Vidéo de fond en boucle -->
+    <video
+      autoplay loop muted playsinline
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"
+    >
+      <source src="hero.mp4" type="video/mp4" />
+      <!-- Fallback si la vidéo ne charge pas -->
+      <img src="moodboard.png" alt="ULM Revolt'air" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    </video>
     <!-- Overlay sombre -->
     <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(5,20,12,0.75) 0%,rgba(8,54,36,0.65) 100%);z-index:1;"></div>
     <!-- Bouton lecture vidéo YouTube -->
@@ -213,8 +216,19 @@
       </div>
       <p class="lede">Atelier, vols d'essai, motorisation, cockpit&nbsp;: chaque étape est documentée. Nos partenaires reçoivent un suivi régulier en photos et vidéos.</p>
     </div>
-    <div class="reveal" style="border-radius: var(--r-lg); overflow: hidden; background: var(--c-cream);">
-      <img src="assets/moodboard.png" alt="Galerie Revolt'air — ULM, cockpit, moteur, atelier" style="width: 100%; display: block;" />
+    <div class="reveal">
+      <div class="galerie-scroll" id="galerie-scroll">
+        <div class="galerie-scroll__item"><img src="galerie/IMG-20251021-WA0000_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG-20251021-WA0003_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_1505_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_1775_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_6338_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_6504_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_6749_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_9016_web.jpg" alt="Revolt'air" /></div>
+        <div class="galerie-scroll__item"><img src="galerie/IMG_9039_web.jpg" alt="Revolt'air" /></div>
+      </div>
+      <div class="galerie-hint">Faites défiler pour voir toutes les photos</div>
     </div>
   </div>
 </section>
@@ -232,22 +246,30 @@
 
         <div class="team-preview reveal">
       <article class="team-preview__card">
-        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">C</div>
+        <div class="team-preview__photo">
+          <img src="photos/Chloe_web.jpg" alt="Chloé" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
         <h3 class="team-preview__name">Chloé</h3>
         <div class="team-preview__role">Structures / Mécanique aéronautiques</div>
       </article>
       <article class="team-preview__card">
-        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">A</div>
+        <div class="team-preview__photo">
+          <img src="photos/Alix_web.jpg" alt="Alix" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
         <h3 class="team-preview__name">Alix</h3>
         <div class="team-preview__role">Structures / Mécanique aéronautiques</div>
       </article>
       <article class="team-preview__card">
-        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">H</div>
+        <div class="team-preview__photo">
+          <img src="photos/Hugo_web.jpg" alt="Hugo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
         <h3 class="team-preview__name">Hugo</h3>
         <div class="team-preview__role">Propulsion &amp; énergie</div>
       </article>
       <article class="team-preview__card">
-        <div class="team-preview__photo" style="background:linear-gradient(135deg,#1a4a32,#2d6e4a);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:48px;color:rgba(244,241,232,0.7);font-weight:700;letter-spacing:-0.02em;">Am</div>
+        <div class="team-preview__photo">
+          <img src="photos/Amael_web.jpg" alt="Amaël" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
         <h3 class="team-preview__name">Amaël</h3>
         <div class="team-preview__role">Communication aéro</div>
       </article>
@@ -271,41 +293,47 @@
     </div>
 
     <div class="timeline-web reveal">
-      <div class="timeline-web__phase">
-        <div class="timeline-web__when">T4 2025</div>
+      <div class="timeline-web__phase timeline-web__phase--done" data-num="01">
+        <div class="timeline-web__meta">
+          <div class="timeline-web__when">T4 2025</div>
+          <div class="timeline-web__status timeline-web__status--done">✓ Réalisé</div>
+        </div>
         <div class="timeline-web__body">
           <h3 class="timeline-web__title">Lancement</h3>
           <ul class="timeline-web__list">
-            <li>Choix de la propulsion</li>
+            <li>Choix de la propulsion électrique</li>
             <li>Rapatriement de l'ULM</li>
-            <li>Rénovation &amp; maintenance</li>
+            <li>Rénovation &amp; bilan mécanique</li>
           </ul>
         </div>
-        <div class="timeline-web__status timeline-web__status--done">✓ En cours</div>
       </div>
-      <div class="timeline-web__phase">
-        <div class="timeline-web__when">T1 — T2 2026</div>
+      <div class="timeline-web__phase timeline-web__phase--active" data-num="02">
+        <div class="timeline-web__meta">
+          <div class="timeline-web__when">T1 — T2 2026</div>
+          <div class="timeline-web__status timeline-web__status--active">● En cours</div>
+        </div>
         <div class="timeline-web__body">
           <h3 class="timeline-web__title">Intégration</h3>
           <ul class="timeline-web__list">
-            <li>Achat moteur &amp; batteries</li>
+            <li>Achat moteur F020 &amp; batteries</li>
             <li>Adaptation de la structure</li>
             <li>Premiers essais au sol</li>
           </ul>
         </div>
-        <div class="timeline-web__status timeline-web__status--active">● Actif</div>
       </div>
-      <div class="timeline-web__phase">
-        <div class="timeline-web__when">T3 — T4 2026</div>
+      <div class="timeline-web__phase timeline-web__phase--upcoming" data-num="03">
+        <div class="timeline-web__meta">
+          <div class="timeline-web__when">T3 — T4 2026</div>
+          <div class="timeline-web__status">À venir</div>
+        </div>
         <div class="timeline-web__body">
-          <h3 class="timeline-web__title">Vol</h3>
+          <h3 class="timeline-web__title">Premier vol</h3>
           <ul class="timeline-web__list">
-            <li>Recertification</li>
+            <li>Recertification DGAC</li>
             <li>Essais en vol</li>
-            <li><strong style="color: var(--c-green)">Premier vol — fin 2026</strong></li>
+            <li><strong style="color: var(--c-green); font-weight: 600;">Premier décollage — fin 2026</strong></li>
           </ul>
         </div>
-        <div class="timeline-web__status">À venir</div>
       </div>
     </div>
 
@@ -320,7 +348,7 @@
       </div>
       <div class="statband__item">
         <div class="statband__num">30 kW</div>
-        <div class="statball__label" style="color: rgba(244,241,232,0.7); font-size: 13px; margin-top: 8px; letter-spacing: 0.06em;">Moteur électrique<br/>F020</div>
+        <div class="statband__label">Moteur électrique<br/>F020</div>
       </div>
       <div class="statband__item">
         <div class="statband__num">100%</div>
@@ -344,15 +372,15 @@
     <div class="partners reveal">
       <div class="partners__item">
         <span class="partners__item-tag">École</span>
-        <span class="partners__item-name">IPSA</span>
+        <img src="Logos/IPSA.svg.png" alt="IPSA" style="max-height:70px;max-width:85%;object-fit:contain;z-index:1;" />
       </div>
       <div class="partners__item">
         <span class="partners__item-tag">Fédération</span>
-        <span class="partners__item-name">France ULM</span>
+        <img src="Logos/France ULM.jpg" alt="France ULM" style="max-height:70px;max-width:85%;object-fit:contain;z-index:1;" />
       </div>
       <div class="partners__item">
         <span class="partners__item-tag">Réseau</span>
-        <span class="partners__item-name">Pépite IDF</span>
+        <img src="Logos/logo_pepite_peips_bleu_rvb.png" alt="Pépite IDF" style="max-height:70px;max-width:85%;object-fit:contain;z-index:1;" />
       </div>
       <div class="partners__item">
         <span class="partners__item-tag" style="color: var(--c-green);">Disponible</span>
@@ -406,12 +434,12 @@
       </div>
 
       <div class="tier-list">
-        <div class="tier-row">
+        <div class="tier-row tier-row--bronze">
           <div class="tier-row__rank">Bronze</div>
           <div class="tier-row__name">Visibilité essentielle</div>
           <div class="tier-row__amount">1&nbsp;000&nbsp;€</div>
         </div>
-        <div class="tier-row">
+        <div class="tier-row tier-row--silver">
           <div class="tier-row__rank">Argent</div>
           <div class="tier-row__name">Visibilité étendue</div>
           <div class="tier-row__amount">2&nbsp;500&nbsp;€</div>
@@ -466,7 +494,7 @@
           <li><a href="soutenir.html">Devenir partenaire</a></li>
           <li><a href="soutenir.html">Faire un don</a></li>
           <li><a href="partenaires.html">Nos partenaires</a></li>
-          <li><a href="assets/dossier.pdf">Télécharger le dossier</a></li>
+          <li><a href="dossier.pdf">Télécharger le dossier</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -475,7 +503,7 @@
           <li><a href="mailto:revoltair@outlook.fr">revoltair@outlook.fr</a></li>
           <li><a href="tel:+33619862336">06 19 86 23 36</a></li>
           <li><a href="https://instagram.com/revolt_air" target="_blank" rel="noopener">@revolt_air</a></li>
-          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://tr.ee/U324e79ZEu" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
     </div>
@@ -494,6 +522,20 @@
 <script type="text/babel" src="site-tweaks.jsx"></script>
 
 <script>
+  // Galerie drag-to-scroll
+  const gallery = document.getElementById('galerie-scroll');
+  if (gallery) {
+    let isDown = false, startX, scrollLeft;
+    gallery.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - gallery.offsetLeft; scrollLeft = gallery.scrollLeft; });
+    gallery.addEventListener('mouseleave', () => isDown = false);
+    gallery.addEventListener('mouseup', () => isDown = false);
+    gallery.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      gallery.scrollLeft = scrollLeft - (e.pageX - gallery.offsetLeft - startX);
+    });
+  }
+
   // Nav scroll
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);

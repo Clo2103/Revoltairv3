@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Partenaires — Revolt'air</title>
+<meta name="description" content="Les partenaires de Revolt'air : IPSA, France ULM, Pépite Île-de-France. Rejoignez-les et soutenez le premier ULM électrique étudiant." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
-<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="site.css?v=4" />
 <style>
   .page-hero { padding: 180px 0 80px; background: var(--c-cream); }
   .partner-card { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-top: 1px solid rgba(8,54,36,0.15); }
@@ -19,8 +20,13 @@
   .tier-block { display: grid; grid-template-columns: 1fr; gap: 24px; }
   @media (min-width: 880px) { .tier-block { grid-template-columns: repeat(3, 1fr); } }
   .tier-card { background: var(--c-cream-soft); border-radius: var(--r-lg); padding: 36px; display: flex; flex-direction: column; gap: 16px; }
-  .tier-card--gold { background: var(--c-green-dark); color: var(--c-cream); position: relative; }
+  .tier-card--bronze { border-top: 4px solid var(--c-bronze); }
+  .tier-card--bronze .tier-card__rank { color: var(--c-bronze); opacity: 1; font-weight: 700; }
+  .tier-card--silver { border-top: 4px solid var(--c-silver); }
+  .tier-card--silver .tier-card__rank { color: var(--c-silver); opacity: 1; font-weight: 700; }
+  .tier-card--gold { background: linear-gradient(155deg, var(--c-green-dark) 0%, #0a4530 100%); color: var(--c-cream); position: relative; border-top: 4px solid var(--c-gold-metal); }
   .tier-card--gold .tier-card__title, .tier-card--gold .tier-card__price { color: var(--c-cream); }
+  .tier-card--gold .tier-card__rank { color: var(--c-gold-metal) !important; opacity: 1 !important; font-weight: 700 !important; }
   .tier-card__rank { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
   .tier-card__title { font-family: var(--font-display); font-size: 28px; color: var(--c-green-dark); margin: 0; }
   .tier-card__price { font-family: var(--font-display); font-size: 44px; color: var(--c-green-dark); margin: 8px 0; line-height: 1; }
@@ -86,9 +92,10 @@
 
 <header class="nav" id="nav">
   <div class="container nav__inner">
-    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <a href="index.html" class="nav__brand"><img src="logo.png" alt="Revolt'air" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
     <nav><ul class="nav__links">
       <li><a href="index.html#projet">Le projet</a></li><li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="technique.html">Technique</a></li>
       <li><a href="partenaires.html">Partenaires</a></li><li><a href="journal.html">Journal</a></li>
       <li><a href="soutenir.html">Soutenir</a></li>
     </ul></nav>
@@ -117,27 +124,19 @@
     <div class="eyebrow" style="margin-bottom: 24px;">Soutiens actuels</div>
     <article class="partner-card reveal">
       <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
-        <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#003087;letter-spacing:0.05em;text-align:center;">IPSA<br/><span style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);">ÉCOLE D'INGÉNIEURS</span></div>
+        <img src="Logos/IPSA.svg.png" alt="IPSA" style="max-height:110px;max-width:90%;object-fit:contain;" />
       </div>
       <div><h2 class="partner-card__name">IPSA</h2><div class="partner-card__role">École d'ingénieurs aéronautique</div><p class="partner-card__desc">Soutien académique, accompagnement projet, accès aux ateliers et expertise technique. L'IPSA est le berceau de Revolt'air.</p></div>
     </article>
     <article class="partner-card reveal">
       <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
-        <div style="text-align:center;">
-          <div style="font-family:var(--font-display);font-size:24px;font-weight:700;color:#003087;letter-spacing:0.04em;">FRANCE</div>
-          <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:#e8261a;letter-spacing:0.08em;">ULM</div>
-          <div style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);margin-top:4px;">FÉDÉRATION NATIONALE</div>
-        </div>
+        <img src="Logos/France ULM.jpg" alt="France ULM" style="max-height:110px;max-width:90%;object-fit:contain;" />
       </div>
       <div><h2 class="partner-card__name">France ULM</h2><div class="partner-card__role">Fédération nationale</div><p class="partner-card__desc">Place dans leur hangar, mise en réseau avec la communauté ULM française et expertise réglementaire pour la recertification.</p></div>
     </article>
     <article class="partner-card reveal">
       <div class="partner-card__logo" style="background:var(--c-cream-soft);padding:20px;display:flex;align-items:center;justify-content:center;">
-        <div style="text-align:center;">
-          <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:#5c35b0;letter-spacing:0.06em;">pépite</div>
-          <div style="font-family:var(--font-display);font-size:14px;font-weight:400;color:var(--c-green-mid);letter-spacing:0.08em;">Île-de-France</div>
-          <div style="font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--c-green-mid);margin-top:4px;">RÉSEAU ENTREPRENEURS</div>
-        </div>
+        <img src="Logos/logo_pepite_peips_bleu_rvb.png" alt="Pépite Île-de-France" style="max-height:110px;max-width:90%;object-fit:contain;" />
       </div>
       <div><h2 class="partner-card__name">Pépite Île-de-France</h2><div class="partner-card__role">Réseau étudiants entrepreneurs</div><p class="partner-card__desc">Financement du rapatriement de l'ULM, accompagnement entrepreneurial et mise en réseau avec d'autres porteurs de projets.</p></div>
     </article>
@@ -148,10 +147,10 @@
   <div class="container">
     <div class="section__head"><div class="eyebrow">Devenir partenaire</div><h2 class="h-section" style="margin-top:14px;">Trois paliers,<br/>une même envie.</h2></div>
     <div class="tier-block">
-      <article class="tier-card reveal"><div class="tier-card__rank">Bronze</div><h3 class="tier-card__title">Visibilité essentielle</h3><div class="tier-card__price">1&nbsp;000&nbsp;€</div>
+      <article class="tier-card tier-card--bronze reveal"><div class="tier-card__rank">Bronze</div><h3 class="tier-card__title">Visibilité essentielle</h3><div class="tier-card__price">1&nbsp;000&nbsp;€</div>
         <ul class="tier-card__list"><li>Logo compact sur l'ULM</li><li>Visibilité sur tous nos supports</li><li class="off">Publications dédiées</li><li class="off">Mise en avant réseaux</li><li class="off">Vidéo de remerciement</li></ul>
       </article>
-      <article class="tier-card reveal"><div class="tier-card__rank">Argent</div><h3 class="tier-card__title">Visibilité étendue</h3><div class="tier-card__price">2&nbsp;500&nbsp;€</div>
+      <article class="tier-card tier-card--silver reveal"><div class="tier-card__rank">Argent</div><h3 class="tier-card__title">Visibilité étendue</h3><div class="tier-card__price">2&nbsp;500&nbsp;€</div>
         <ul class="tier-card__list"><li>Logo format moyen sur l'ULM</li><li>Visibilité sur tous nos supports</li><li>Publications dédiées</li><li class="off">Mise en avant réseaux</li><li class="off">Vidéo de remerciement</li></ul>
       </article>
       <article class="tier-card tier-card--gold reveal"><div class="tier-card__rank">Or — recommandé</div><h3 class="tier-card__title">Partenaire principal</h3><div class="tier-card__price">5&nbsp;000&nbsp;€</div>

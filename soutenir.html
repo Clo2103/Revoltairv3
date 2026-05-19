@@ -4,25 +4,148 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Soutenir — Revolt'air</title>
+<meta name="description" content="Soutenez Revolt'air : trois paliers de partenariat ou un don libre pour financer le premier ULM 100% électrique étudiant." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Alice&display=swap">
-<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="site.css?v=4" />
 <style>
-.tier-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
-@media (min-width: 880px) { .tier-grid { grid-template-columns: repeat(3, 1fr); } }
-.tier-card { background: var(--c-cream-soft); border-radius: var(--r-lg); padding: 40px 32px; display: flex; flex-direction: column; gap: 18px; border: 1px solid rgba(8,54,36,0.08); transition: transform 0.3s, box-shadow 0.3s; }
-.tier-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -20px rgba(8,54,36,0.2); }
-.tier-card--gold { background: var(--c-green-dark); color: var(--c-cream); border-color: var(--c-green); position: relative; }
-.tier-card--gold::before { content: "Recommandé"; position: absolute; top: -12px; left: 32px; background: var(--c-green); color: var(--c-green-dark); padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.tier-card__rank { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-green); font-weight: 600; }
-.tier-card__price { font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--c-green-dark); line-height: 1; }
+/* ── Grille des packs ── */
+.tier-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  align-items: stretch;
+}
+@media (min-width: 880px) {
+  .tier-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end; /* carte Or plus haute = effet premium */
+  }
+}
+
+/* ── Carte de base ── */
+.tier-card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 40px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid rgba(8,54,36,0.1);
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.tier-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px -12px rgba(8,54,36,0.18);
+}
+/* Barre de couleur en haut */
+.tier-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(8,54,36,0.15);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+
+/* ── Couleurs métalliques ── */
+.tier-card--bronze::before { background: var(--c-bronze) !important; height: 5px !important; }
+.tier-card--bronze .tier-card__rank { color: var(--c-bronze) !important; }
+
+.tier-card--silver::before { background: var(--c-silver) !important; height: 5px !important; }
+.tier-card--silver .tier-card__rank { color: var(--c-silver) !important; }
+
+/* ── Carte Or (premium) ── */
+.tier-card--gold {
+  background: linear-gradient(155deg, var(--c-green-dark) 0%, #0a4530 100%);
+  color: var(--c-cream);
+  border-color: transparent;
+  padding-top: 56px;
+  box-shadow: 0 20px 60px -10px rgba(8,54,36,0.35);
+}
+.tier-card--gold::before { background: var(--c-gold-metal) !important; height: 5px !important; }
+.tier-card--gold::after {
+  content: "✦ Recommandé";
+  position: absolute;
+  top: 20px; left: 36px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-gold-metal);
+}
+.tier-card--gold .tier-card__rank { color: var(--c-gold-metal) !important; }
+.tier-card--gold:hover { transform: translateY(-8px); }
+
+/* ── Contenu ── */
+.tier-card__rank {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-green-mid);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.tier-card--gold .tier-card__rank { color: var(--c-green); }
+
+.tier-card__price {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4vw, 56px);
+  font-weight: 700;
+  color: var(--c-green-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
 .tier-card--gold .tier-card__price { color: var(--c-cream); }
-.tier-card__price small { font-size: 14px; font-weight: 400; opacity: 0.6; display: block; margin-top: 4px; letter-spacing: 0.04em; }
-.tier-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.tier-card li { display: flex; gap: 10px; align-items: flex-start; }
-.tier-card li::before { content: "✓"; color: var(--c-green); font-weight: 700; flex-shrink: 0; }
-.tier-card--gold li::before { color: var(--c-green); }
+.tier-card__price small {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.55;
+  display: block;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+}
+
+/* ── Séparateur ── */
+.tier-card__divider {
+  height: 1px;
+  background: rgba(8,54,36,0.1);
+  margin: 24px 0;
+}
+.tier-card--gold .tier-card__divider { background: rgba(244,241,232,0.15); }
+
+/* ── Liste ── */
+.tier-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14.5px;
+  line-height: 1.4;
+  flex: 1;
+}
+.tier-card li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.tier-card li::before {
+  content: "✓";
+  color: var(--c-green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 </style>
 
 <style>
@@ -74,14 +197,15 @@
 }
 </style>
 </head>
-<body>
+<body data-screen-label="Soutenir">
 
 <header class="nav" id="nav">
   <div class="container nav__inner">
-    <a href="index.html" class="nav__brand"><img src="assets/logo.png" alt="" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
+    <a href="index.html" class="nav__brand"><img src="logo.png" alt="Revolt'air" /><span>Revolt<span class="nav__brand-em">'air</span></span></a>
     <nav><ul class="nav__links">
       <li><a href="index.html#projet">Le projet</a></li>
       <li><a href="equipe.html">L'équipe</a></li>
+      <li><a href="technique.html">Technique</a></li>
       <li><a href="partenaires.html">Partenaires</a></li>
       <li><a href="journal.html">Journal</a></li>
       <li><a href="soutenir.html">Soutenir</a></li>
@@ -94,7 +218,7 @@
     ">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav__cta"><a href="assets/dossier.pdf" class="btn btn--primary" target="_blank">Télécharger le dossier</a></div>
+    <div class="nav__cta"><a href="dossier.pdf" class="btn btn--primary" target="_blank">Télécharger le dossier</a></div>
   </div>
 </header>
 
@@ -154,38 +278,42 @@
     </div>
 
     <div class="tier-grid reveal">
-      <article class="tier-card">
+      <article class="tier-card tier-card--bronze">
         <div class="tier-card__rank">Bronze</div>
         <div class="tier-card__price">1 000&nbsp;€<small>à partir de</small></div>
+        <div class="tier-card__divider"></div>
         <ul>
           <li>Logo <strong>compact</strong> sur l'ULM</li>
-          <li>Visibilité sur tous nos supports</li>
-          <li>Visite de l'ULM</li>
+          <li>Mention sur le site &amp; réseaux sociaux</li>
+          <li>Visite de l'ULM en atelier</li>
         </ul>
-        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Bronze" class="btn btn--ghost" style="margin-top: auto;">Devenir Bronze</a>
+        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Bronze" class="btn btn--ghost" style="margin-top:28px;">Devenir Bronze</a>
       </article>
-      <article class="tier-card">
+      <article class="tier-card tier-card--silver">
         <div class="tier-card__rank">Argent</div>
         <div class="tier-card__price">2 500&nbsp;€<small>à partir de</small></div>
+        <div class="tier-card__divider"></div>
         <ul>
-          <li>Logo <strong>moyen</strong> sur l'ULM</li>
-          <li>Visibilité sur tous nos supports</li>
+          <li>Logo <strong>format moyen</strong> sur l'ULM</li>
+          <li>Mention sur le site &amp; réseaux sociaux</li>
           <li>Publications dédiées (LinkedIn, Instagram, TikTok)</li>
-          <li>Visite de l'ULM</li>
+          <li>Visite de l'ULM en atelier</li>
         </ul>
-        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Argent" class="btn btn--ghost" style="margin-top: auto;">Devenir Argent</a>
+        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Argent" class="btn btn--ghost" style="margin-top:28px;">Devenir Argent</a>
       </article>
       <article class="tier-card tier-card--gold">
         <div class="tier-card__rank">Or</div>
         <div class="tier-card__price">5 000&nbsp;€<small>à partir de</small></div>
+        <div class="tier-card__divider"></div>
         <ul>
           <li>Logo <strong>grand format</strong> sur l'ULM</li>
-          <li>Visibilité sur tous nos supports</li>
+          <li>Mention sur le site &amp; réseaux sociaux</li>
           <li>Publications dédiées (LinkedIn, Instagram, TikTok)</li>
           <li>Mise en avant d'un produit ou service</li>
-          <li>Visite de l'ULM</li>
+          <li>Vidéo de remerciement personnalisée</li>
+          <li>Visite VIP de l'ULM en atelier</li>
         </ul>
-        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Or" class="btn btn--accent" style="margin-top: auto;">Devenir Or</a>
+        <a href="mailto:revoltair@outlook.fr?subject=Partenariat Or" class="btn btn--accent" style="margin-top:28px;">Devenir partenaire Or</a>
       </article>
     </div>
   </div>
@@ -200,6 +328,11 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
 <script>
   const nav = document.getElementById('nav');
   const onS = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
